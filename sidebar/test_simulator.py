@@ -81,17 +81,14 @@ def show_result(total_qs):
         time.sleep(2)
 
     st.subheader("📊 Final Result")
-<<<<<<< HEAD
     st.write_stream(f"Score: {score}/{total_qs}")
 
     percentage = calculate_percentage(score, total_qs)
     st.write_stream(f"Percentage: {percentage:.2f}%")
-=======
     st.write(f"Score: {score}/{total_qs}")
 
     percentage = calculate_percentage(score, total_qs)
     st.write(f"Percentage: {percentage:.2f}%")
->>>>>>> da8c1064f663d3e7b46067fa57c3713d9c4a9720
 
     st.subheader("🧠 Weak Areas")
 
@@ -109,8 +106,5 @@ def show_result(total_qs):
 
         st.info(f"Focus more on {weakest}")
     else:
-<<<<<<< HEAD
         st.success("No weak areas detected!")
-=======
         st.success("No weak areas detected!")
->>>>>>> da8c1064f663d3e7b46067fa57c3713d9c4a9720
