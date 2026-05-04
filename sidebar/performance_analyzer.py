@@ -103,6 +103,3 @@ def analyze_performance():
                 st.write_stream(advice)
             st.write(f"Strongest: {strongest_subject} ({strongest_marks})")
             st.write(f"Weakest: {weakest_subject} ({weakest_marks})")
-
-        except:
-            st.error("Invalid format! Use: Mathematics:80, Physics:60")
