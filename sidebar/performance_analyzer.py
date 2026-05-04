@@ -23,6 +23,11 @@ def calculate_percentage(total, count):
 
 
 def analyze_performance():
+    strongest_subject = "N/A"
+    strongest_marks = 0
+    weakest_subject = "N/A"
+    weakest_marks = 0
+    
     marks = st.text_input(
         "Enter your marks",
         placeholder="Mathematics:80, Physics:60, Chemistry:90"
