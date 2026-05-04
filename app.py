@@ -23,4 +23,8 @@ elif feature == "Performance Analyzer":
     analyze_performance()
 
 elif feature == "Test Simulator":
+<<<<<<< HEAD
     simulate_test()
+=======
+    simulate_test()
+>>>>>>> da8c1064f663d3e7b46067fa57c3713d9c4a9720

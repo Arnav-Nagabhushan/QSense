@@ -1,6 +1,9 @@
 import streamlit as st
 import time
+<<<<<<< HEAD
 from logic.brain import get_ai_recommendations
+=======
+>>>>>>> da8c1064f663d3e7b46067fa57c3713d9c4a9720
 
 def parse_input_marks(marks):
     marks_dict = {}
@@ -39,6 +42,7 @@ def analyze_performance():
 
         try:
             marks_dict = parse_input_marks(marks)
+<<<<<<< HEAD
             total = sum(marks_dict.values())
 
             average = calculate_percentage(total, len(marks_dict))
@@ -61,11 +65,30 @@ def analyze_performance():
                 st.success(f"Outstanding: {average:.2f}")
                 st.balloons()
                 st.toast("Brilliant Performance! 🏆")
+=======
+
+            total = sum(marks_dict.values())
+            average = calculate_percentage(total, len(marks_dict))
+
+            strongest_subject = max(marks_dict, key=marks_dict.get)
+            weakest_subject = min(marks_dict, key=marks_dict.get)
+
+            strongest_marks = marks_dict[strongest_subject]
+            weakest_marks = marks_dict[weakest_subject]
+
+            st.subheader("📊 Results")
+
+            if average == 100:
+                st.success(f"Perfect score: {average:.2f}")
+            elif average >= 85:
+                st.success(f"Outstanding: {average:.2f}")
+>>>>>>> da8c1064f663d3e7b46067fa57c3713d9c4a9720
             elif average >= 60:
                 st.info(f"Average: {average:.2f}")
             else:
                 st.warning(f"Needs improvement: {average:.2f}")
 
+<<<<<<< HEAD
             # Use f-strings for simple, clear formatting
             st.write(f"Strongest Subject: {st.session_state.strongest_subject} ({strongest_marks})")
             st.write(f"Weakest Subject: {st.session_state.weakest_subject} ({weakest_marks})")
@@ -84,3 +107,10 @@ def analyze_performance():
                 st.success("Analysis Complete!")
                 st.markdown("### 🧠 Personalized Study Tips just for you!")
                 st.write_stream(advice)
+=======
+            st.write(f"Strongest: {strongest_subject} ({strongest_marks})")
+            st.write(f"Weakest: {weakest_subject} ({weakest_marks})")
+
+        except:
+            st.error("Invalid format! Use: Mathematics:80, Physics:60")
+>>>>>>> da8c1064f663d3e7b46067fa57c3713d9c4a9720
