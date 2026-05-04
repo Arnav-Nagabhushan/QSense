@@ -20,10 +20,8 @@ def show_home():
     st.markdown("-> and many more!")
     time.sleep(1)
 
-<<<<<<< HEAD
     st.divider()
     
     st.write("Start by selecting a feature from the sidebar.")
-=======
+
     st.write("Start by selecting a feature from the sidebar.")
->>>>>>> da8c1064f663d3e7b46067fa57c3713d9c4a9720
