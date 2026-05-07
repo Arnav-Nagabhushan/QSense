@@ -30,7 +30,7 @@ def show_formula_api():
         if response.text:
             st.success("Request Successful")
             st.markdown("---")
-            
+
             st.markdown(response.text)
         
         else:
