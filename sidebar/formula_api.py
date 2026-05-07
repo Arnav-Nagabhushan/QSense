@@ -18,7 +18,7 @@ def show_formula_api():
             with st.spinner("Fetching formulas so you can revise..."):
                 try:
                     response = client.models.generate_content(
-                        model="gemini-1.5-flash-lite", 
+                        model="gemini-1.5-flash", 
                         contents=prompt
                     )
 
