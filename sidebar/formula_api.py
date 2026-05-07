@@ -11,6 +11,10 @@ def show_formula_api():
         st.code(f"GET /api/v1{query}", language="bash")
 
     if st.button("Execute Request"):
+        if not query or len(query) < 3:
+            st.warning("Please enter a valid topic path first.")
+            return
+        
         if "GEMINI_API_KEY" not in st.secrets:
             st.error("Missing API Key")
             return
