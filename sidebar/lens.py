@@ -20,7 +20,7 @@ def lens():
             with st.spinner("Analyzing the image..."):
                 response = client.models.generate_content(
                     model="gemini-1.5-flash-lite",
-                    contents=[prompt, image]
+                    contents=[prompt, image],
                     config={"stream": True}
                 )
 
