@@ -21,7 +21,7 @@ def lens():
                 response = client.models.generate_content(
                     model="gemini-1.5-flash-lite",
                     contents=[prompt, image],
-                    config={"stream": True}
+                    stream=True
                 )
 
                 st.markdown("---")

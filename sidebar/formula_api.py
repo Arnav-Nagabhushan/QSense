@@ -8,7 +8,7 @@ def show_formula_api():
     query = st.text_input("Enter Topic Path", placeholder="e.g., /physics/thermodynamics")
 
     if query:
-        st.caption(f"GET https://qsense.app/api/v1{query}")
+        st.code(f"Requesting: GET /api/v1{query}")
 
         if st.button("Execute Request"):
             client = genai.Client(api_key=st.secrets["GEMINI_API_KEY"])
@@ -19,10 +19,10 @@ def show_formula_api():
                 response = client.models.generate_content(
                     model="gemini-1.5-flash-lite", 
                     contents=prompt,
-                    config={"stream":True}
+                    stream=True
                 )
 
                 st.markdown("---")
                 st.markdown("### 👨‍🔬 Formulae")
-                st.write(response.text)
+                st.write_stream(response.text)
             
