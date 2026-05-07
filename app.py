@@ -4,27 +4,35 @@ from sidebar.home import show_home
 from sidebar.performance_analyzer import analyze_performance
 from sidebar.test_simulator import simulate_test
 from sidebar.xplain import xplain
+from sidebar.lens import lens
 
 st.set_page_config(page_title="QSense", layout="wide")
 
 st.title("🧠 QSense")
 st.caption("From confusion to clarity.")
 
-feature = st.sidebar.selectbox(
-    "Choose Feature",
-    ["Home", "Performance Analyzer", "Test Simulator", "Xplain"]
-)
+st.sidebar.header("Main Menu")
+feature = st.sidebar.radio("Go to", ["Home", "Test Simulator"])
+
+st.sidebar.markdown("---")
+
+st.sidebar.header("AI-Powered Tools")
+tool = st.sidebar.selectbox("Utilities", ["Select a Tool...", "Xplain", "Performance Analyzer", "QSense Lens"])
+
 
 st.header(feature)
 
-if feature == "Home":
-    show_home()
+if tool == "Xplain":
+    xplain()
 
-elif feature == "Performance Analyzer":
+elif tool == "Performance Analyzer":
     analyze_performance()
 
-elif feature == "Test Simulator":
-    simulate_test() 
+elif tool = "QSense Lens":
+    lens()
 
-elif feature == "Xplain":
-    xplain()
+elif feature == "Home":
+    show_home()
+
+elif feature == "Test Simulator":
+    simulate_test()
