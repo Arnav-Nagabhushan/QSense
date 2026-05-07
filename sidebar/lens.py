@@ -20,10 +20,9 @@ def lens():
             with st.spinner("Analyzing the image..."):
                 response = client.models.generate_content(
                     model="gemini-1.5-flash-lite",
-                    contents=[prompt, image],
-                    stream=True
+                    contents=[prompt, image]
                 )
 
                 st.markdown("---")
                 st.markdown("### 🎯 AI-Generated Solution")
-                st.write_stream(response.text)
+                st.write(response.text)
