@@ -4,7 +4,7 @@ from sidebar.home import show_home
 from sidebar.performance_analyzer import analyze_performance
 from sidebar.test_simulator import simulate_test
 from sidebar.xplain import xplain
-from sidebar.lens import lens
+from sidebar.lens import show_lens
 from sidebar.formula_api import show_formula_api
 
 st.set_page_config(page_title="QSense", layout="wide")
@@ -30,7 +30,7 @@ elif tool == "Performance Analyzer":
     analyze_performance()
 
 elif tool == "QSense Lens":
-    lens()
+    show_lens()
 
 elif tool == "Formula API":
     show_formula_api()
