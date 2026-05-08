@@ -1,6 +1,7 @@
 import streamlit as st
 from google import genai
 import re
+import time
 
 def show_synapse():
     st.title("🧠 QSense Synapse")
@@ -26,7 +27,7 @@ def show_synapse():
         except Exception as e:
             if "429" in str(e):
                 st.warning("Quota hit! Auto-retrying in 15 seconds... don't click anything!")
-                time.sleep(15)  # Physical pause to let the quota reset
+                time.sleep(15)
                 response = client.models.generate_content(
                     model='gemini-2.0-flash',
                     contents=prompt
