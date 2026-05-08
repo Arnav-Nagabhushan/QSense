@@ -1,5 +1,6 @@
 import streamlit as st
-import google.generativeai as genai
+from google import genai
+client = genai.Client(api_key=st.secrets["GEMINI_API_KEY"])
 
 def show_formula_api():
     st.title("📡 Formula API")

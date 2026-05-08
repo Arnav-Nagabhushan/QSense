@@ -1,4 +1,5 @@
-import google.generativeai as genai
+from google import genai
+client = genai.Client(api_key=st.secrets["GEMINI_API_KEY"])
 import streamlit as st
 
 def get_ai_recommendations(weak_topics, avg_score):

@@ -1,5 +1,6 @@
 import streamlit as st
-import google.generativeai as genai
+from google import genai
+client = genai.Client(api_key=st.secrets["GEMINI_API_KEY"])
 import streamlit.components.v1 as components
 import re
 
@@ -9,7 +10,7 @@ def clean_for_mermaid(text):
     return text
 
 def show_synapse():
-    st.title("🧠 QSense Synapse")
+    st.title("✨ QSense Synapse")
     st.subheader("Generate a conceptual Mind Map for any topic.")
 
     topic = st.text_input("Enter Topic", placeholder = "(e.g., Organic Chemistry, Waves, Matrices)")
@@ -33,16 +34,19 @@ def show_synapse():
                 st.success(f"Map for {topic} is ready!")
                 st.success(f"Synapse Map: {topic}")
 
-                html_code = f"""
-                <div class="mermaid" style="background-color: white; padding: 20px;">
-                    {clean_mermaid}
-                </div>
-                <script type="module">
-                    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@10/dist/mermaid.esm.min.mjs';
-                    mermaid.initialize({{ startOnLoad: true, theme: 'neutral', securityLevel: 'loose' }});
-                </script>
+                html_content = f"""
+                <html>
+                    <body>
+                        <pre class="mermaid">{clean_mermaid}</pre>
+                        <script type="module">
+                            import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+                            mermaid.initialize({{ startOnLoad: true }});
+                        </script>
+                    </body>
+                </html>
                 """
-                components.html(html_code, height=800, scrolling=True)
+                st.logo("🧠", icon_image=None) 
+                st.iframe(data=html_content, height=600)
 
                 st.info("💡 Tip: Copy this map into your notes to visualize the chapter flow and easy understanding!")
 
