@@ -26,12 +26,16 @@ def show_synapse():
                 )
         except Exception as e:
             if "429" in str(e):
-                st.warning("Quota hit! Auto-retrying in 15 seconds... don't click anything!")
-                time.sleep(15)
-                response = client.models.generate_content(
-                    model='gemini-2.0-flash',
-                    contents=prompt
-                )
+                # st.warning("Quota hit! Auto-retrying in 15 seconds... don't click anything!")
+                # time.sleep(15)
+                # response = client.models.generate_content(
+                #     model='gemini-2.0-flash',
+                #     contents=prompt
+                # )
+
+                response = client.models.generate_content(model='gemini-1.5-flash', contents=prompt)
+
+                
             else:
                 st.error(f"Error: {e}")
                 clean_mermaid = response.text.replace("```mermaid", "").replace("```", "").strip()
