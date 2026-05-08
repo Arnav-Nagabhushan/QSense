@@ -18,7 +18,7 @@ feature = st.sidebar.radio("Go to", ["Home", "Test Simulator"])
 st.sidebar.markdown("---")
 
 st.sidebar.header("AI-Powered Tools")
-tool = st.sidebar.selectbox("Utilities", ["Select a Tool...", "Xplain", "Performance Analyzer", "QSense Lens", "Formula API"])
+tool = st.sidebar.selectbox("Utilities", ["Select a Tool...", "Xplain", "Performance Analyzer", "QSense Lens", "Formula API, QSense Synapse"])
 
 
 st.header(feature)
