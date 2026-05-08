@@ -6,6 +6,7 @@ from sidebar.test_simulator import simulate_test
 from sidebar.xplain import xplain
 from sidebar.lens import show_lens
 from sidebar.formula_api import show_formula_api
+from sidebar.synapse import show_synapse
 
 st.set_page_config(page_title="QSense", layout="wide")
 
@@ -18,7 +19,7 @@ feature = st.sidebar.radio("Go to", ["Home", "Test Simulator"])
 st.sidebar.markdown("---")
 
 st.sidebar.header("AI-Powered Tools")
-tool = st.sidebar.selectbox("Utilities", ["Select a Tool...", "Xplain", "Performance Analyzer", "QSense Lens", "Formula API, QSense Synapse"])
+tool = st.sidebar.selectbox("Navigate", ["Select a Tool...", "Xplain", "Performance Analyzer", "QSense Lens", "Formula API", "QSense Synapse"])
 
 
 st.header(feature)
@@ -31,6 +32,10 @@ elif tool == "Performance Analyzer":
 
 elif tool == "QSense Lens":
     show_lens()
+
+elif tool == "QSense Synapse":
+    show_synapse()
+
 
 elif tool == "Formula API":
     show_formula_api()
