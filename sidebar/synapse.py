@@ -1,5 +1,6 @@
 import streamlit as st
 import google.generativeai as genai
+import streamlit.components.v1 as components
 
 def show_synapse():
     st.title("🧠 QSense Synapse")
@@ -26,11 +27,17 @@ def show_synapse():
 
                 st.success(f"Map for {topic} is ready!")
                 st.success(f"Synapse Map: {topic}")
-                st.markdown(f"""
-                ```mermaid
-                {clean_mermaid}
-                ```
-                """)
+
+                html_code = f"""
+                <div class="mermaid" style="background-color: white; padding: 20px; border-radius: 10px;">
+                    {clean_mermaid}
+                </div>
+                <script type="module">
+                    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+                    mermaid.initialize({{ startOnLoad: true, theme: 'forest' }});
+                </script>
+                """
+                components.html(html_code, height=600, scrolling=True)
 
                 st.info("💡 Tip: Copy this map into your notes to visualize the chapter flow and easy understanding!")
 
