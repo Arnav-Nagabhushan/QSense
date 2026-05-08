@@ -1,7 +1,7 @@
 import streamlit as st
 
 from sidebar.home import show_home
-from sidebar.performance_analyzer import analyze_performance
+# from sidebar.performance_analyzer import analyze_performance TEMPORARY ONLY
 from sidebar.test_simulator import simulate_test
 from sidebar.xplain import xplain
 from sidebar.lens import show_lens
