@@ -15,7 +15,7 @@ def xplain():
 
             with st.spinner("Thinking..."):
                 response = client.models.generate_content(
-                    model="gemini-1.5-flash-lite", 
+                    model="gemini-2.5-flash-lite", 
                     contents=prompt
                 )
                 st.markdown("### The Xplanation")
