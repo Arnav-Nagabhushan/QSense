@@ -1,4 +1,4 @@
-from google import genai
+import google.generativeai as genai
 import streamlit as st
 
 def get_ai_recommendations(weak_topics, avg_score):
