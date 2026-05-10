@@ -30,7 +30,8 @@ def show_synapse():
                 time.sleep(15)
                 response = client.models.generate_content(
                     model='gemini-2.0-flash',
-                    contents=prompt
+                    contents=prompt,
+                    config={'http_options': {'timeout': 10.0}}
                 )
 
                 # response = client.models.generate_content(model='gemini-1.5-flash', contents=prompt)
