@@ -18,8 +18,7 @@ def show_synapse():
             st.error("Missing GEMINI_API_KEY in Streamlit Secrets!")
             return
         
-        if isinstance(api_key, tuple): api_key = api_key[0]
-        api_key = str(api_key).strip()
+        api_key = str(api_key[0] if isinstance(api_key, tuple) else api_key).strip()
 
         response = None
 
@@ -50,22 +49,22 @@ def show_synapse():
             else:
                 st.error(f"API Error: {e}")
 
-        # FIX 2: Only attempt to render if we actually got a response
         if response and hasattr(response, 'text') and response.text:
             clean_mermaid = response.text.replace("```mermaid", "").replace("```", "").strip()
             
             st.success(f"Synapse Map: {topic}")
 
             html_code = f"""
-            <div class="mermaid" style="background-color: white; padding: 20px; border-radius: 10px;">
-                {clean_mermaid}
-            </div>
-            <script type="module">
-                import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-                mermaid.initialize({{ startOnLoad: true, theme: 'forest' }});
-            </script>
-            """
-            components.html(html_code, height=800, scrolling=True)
+                <div class="mermaid" style="background-color: white; padding: 20px; border-radius: 10px;">
+                    {clean_mermaid}
+                </div>
+                <script type="module">
+                    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+                    mermaid.initialize({{ startOnLoad: true, theme: 'forest' }});
+                </script>
+                """
+            components.html(html_code, height=600, scrolling=True)
+            
         else:
-            if not any(st.session_state.get("_errors", [])): # Prevent double errors
+            if not any(st.session_state.get("_errors", [])):
                 st.warning("No data received. The AI might be throttled. Try again in 1 minute.")
