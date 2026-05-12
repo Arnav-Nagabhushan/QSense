@@ -15,9 +15,8 @@ def show_lens():
         if st.button("Solve with AI"):
             api_key = st.secrets.get("GEMINI_API_KEY")
             client = genai.Client(api_key=api_key)
-            
+
             model_id = 'gemini-3.1-flash-lite'
-            model = genai.GenerativeModel(model_id)
 
 
             if not api_key:
