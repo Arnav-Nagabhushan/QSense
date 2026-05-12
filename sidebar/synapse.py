@@ -2,6 +2,7 @@ import streamlit as st
 from google import genai
 import re
 import time
+import streamlit.components.v1 as components
 
 def show_synapse():
     st.title("🧠 QSense Synapse")
@@ -10,12 +11,17 @@ def show_synapse():
     topic = st.text_input("Enter Topic", placeholder="e.g., Laws of Motion")
 
     if st.button("Generate Map") and topic:
-        api_key = st.secrets.get("GEMINI_API_KEY"),
+        api_key = st.secrets.get("GEMINI_API_KEY")
         
         
         if not api_key:
             st.error("Missing GEMINI_API_KEY in Streamlit Secrets!")
             return
+        
+        if isinstance(api_key, tuple): api_key = api_key[0]
+        api_key = str(api_key).strip()
+
+        response = None
 
         try:
             client = genai.Client(
@@ -28,36 +34,38 @@ def show_synapse():
                     model='gemini-3.1-flash-lite',
                     contents=prompt
                 )
+
         except Exception as e:
             if "429" in str(e):
-                st.warning("Quota hit! Auto-retrying in 15 seconds... don't click anything!")
-                time.sleep(15)
-                response = client.models.generate_content(
-                    model='gemini-2.0-flash',
-                    contents=prompt,
-                    config={'http_options': {'timeout': 10.0}}
-                )
-
-                # response = client.models.generate_content(model='gemini-1.5-flash', contents=prompt)
-
-
+                st.warning("Quota hit! Retrying in 10 seconds...")
+                time.sleep(10)
+                try:
+                    # Fallback model for retries
+                    response = client.models.generate_content(
+                        model='gemini-1.5-flash',
+                        contents=prompt
+                    )
+                except Exception as e2:
+                    st.error(f"Retry failed: {e2}")
             else:
-                st.error(f"Error: {e}")
-                clean_mermaid = response.text.replace("```mermaid", "").replace("```", "").strip()
-                
-                st.success(f"Synapse Map: {topic}")
+                st.error(f"API Error: {e}")
 
-                import streamlit.components.v1 as components
-                html_code = f"""
-                <div class="mermaid" style="background-color: white; padding: 20px; border-radius: 10px;">
-                    {clean_mermaid}
-                </div>
-                <script type="module">
-                    import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
-                    mermaid.initialize({{ startOnLoad: true, theme: 'forest' }});
-                </script>
-                """
-                components.html(html_code, height=800, scrolling=True)
+        # FIX 2: Only attempt to render if we actually got a response
+        if response and hasattr(response, 'text') and response.text:
+            clean_mermaid = response.text.replace("```mermaid", "").replace("```", "").strip()
+            
+            st.success(f"Synapse Map: {topic}")
 
-        except Exception as e:
-            st.error(f"Synapse Error: {e}")
+            html_code = f"""
+            <div class="mermaid" style="background-color: white; padding: 20px; border-radius: 10px;">
+                {clean_mermaid}
+            </div>
+            <script type="module">
+                import mermaid from 'https://cdn.jsdelivr.net/npm/mermaid@11/dist/mermaid.esm.min.mjs';
+                mermaid.initialize({{ startOnLoad: true, theme: 'forest' }});
+            </script>
+            """
+            components.html(html_code, height=800, scrolling=True)
+        else:
+            if not any(st.session_state.get("_errors", [])): # Prevent double errors
+                st.warning("No data received. The AI might be throttled. Try again in 1 minute.")
