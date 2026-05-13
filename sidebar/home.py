@@ -26,10 +26,10 @@ def show_home():
     col1, col2 = st.columns(2)
     col3, col4 = st.columns(2)
 
-    col1.metric(label="Synapses", value=random.choice(1267, 2367), delta=f"{random.choice(12.00, 14.00)}%")
-    col2.metric(label="Solved", value=random.choice(867, 1967), delta=f"{random.choice(5.00, 7.00)}%")
-    col3.metric(label="Accuracy", value=f"{random.choice(97.00, 99.00)}%", delta=f"{random.choice(0.4, 0.6)}%")
-    col4.metric(label="Streak", value=random.choice(17, 67), delta="🔥")
+    col1.metric(label="Synapses", value=random.randint(1267, 2367), delta=f"{random.uniform(12.00, 14.00):.2f}%")
+    col2.metric(label="Solved", value=random.randint(867, 1967), delta=f"{random.uniform(5.00, 7.00):.2f}%")
+    col3.metric(label="Accuracy", value=f"{random.randint(97.00, 99.00)}%", delta=f"{random.uniform(0.4, 0.6):.2f}%")
+    col4.metric(label="Streak", value=random.randint(17, 67), delta="🔥")
 
     style_metric_cards(
         background_color="#1E1E1E", 
