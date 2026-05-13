@@ -18,7 +18,7 @@ def get_ai_recommendations(weak_topics, avg_score):
 
     except Exception as e:
         if "503" in str(e):
-            yield "🚀 The AI servers are super busy. Please wait 10 seconds and click again!"
+            yield "🚀 Our AI is over-heating due to over-usage. Please wait 10 seconds and click again!"
         elif "429" in str(e):
             yield "🕒 You've hit the speed limit. Wait 1 minute for the free tier to reset."
         else:

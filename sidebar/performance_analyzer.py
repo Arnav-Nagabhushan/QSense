@@ -88,7 +88,6 @@ def analyze_performance():
             else:
                 st.warning(f"Needs improvement: {average:.2f}")
 
-            # Use f-strings for simple, clear formatting
             st.write(f"Strongest Subject: {st.session_state.strongest_subject} ({strongest_marks})")
             st.write(f"Weakest Subject: {st.session_state.weakest_subject} ({weakest_marks})")
 
@@ -106,5 +105,3 @@ def analyze_performance():
                 st.success("Analysis Complete!")
                 st.markdown("### 🧠 Personalized Study Tips just for you!")
                 st.write_stream(advice)
-            st.write(f"Strongest: {strongest_subject} ({strongest_marks})")
-            st.write(f"Weakest: {weakest_subject} ({weakest_marks})")

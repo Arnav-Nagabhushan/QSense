@@ -4,3 +4,5 @@ Pillow>=11.0.0,<12.0.0
 python-dotenv==1.2.2
 pydantic>=2.10.0
 cryptography>=44.0.0
+st-supabase-connection
+streamlit-extras
