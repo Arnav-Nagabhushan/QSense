@@ -1,7 +1,6 @@
 import streamlit as st
 import time
 import random
-from st_supabase_connection import SupabaseConnection
 from streamlit_extras.metric_cards import style_metric_cards
 
 def show_home():
@@ -11,26 +10,26 @@ def show_home():
     "“Don't count the days, make the days count.”"
     ]
     
-    with st.status("Loading the webpage...", expanded=False) as status:
-        st.write("Fetching Google API...")
-        time.sleep(1)
-        status.update(label="Ready to Study!", state="complete", expanded=False)
-        st.toast({random.choice(quotes)})
+    for i in range(5):
+        st.progress(i)
+    st.sidebar.markdown(f"> Daily Motivation: {random.choice(quotes)}")
 
     st.write("Welcome to 🧠 QSense")
-    st.markdown("""### Your Personalized AI Tutor" \
+    st.markdown("""### Your Personalized AI Tutor" 
                     Master complex topics, visualize mind maps and solve any problem with :rainbow[3.1—Flash—Lite] precision!
                 """)
 
     st.divider
 
+    st.title("🧠 QSense Dashboard")
+
     col1, col2 = st.columns(2)
     col3, col4 = st.columns(2)
 
-    col1.metric(label="Synapses", value="1,240", delta="12%")
-    col2.metric(label="Solved", value="850", delta="5.2%")
-    col3.metric(label="Accuracy", value="98%", delta="0.4%")
-    col4.metric(label="Streak", value="7 Days", delta="🔥")
+    col1.metric(label="Synapses", value=random.choice(1267, 2367), delta=f"{random.choice(12.00, 14.00)}%")
+    col2.metric(label="Solved", value=random.choice(867, 1967), delta=f"{random.choice(5.00, 7.00)}%")
+    col3.metric(label="Accuracy", value=f"{random.choice(97.00, 99.00)}%", delta=f"{random.choice(0.4, 0.6)}%")
+    col4.metric(label="Streak", value=random.choice(17, 67), delta="🔥")
 
     style_metric_cards(
         background_color="#1E1E1E", 
@@ -46,7 +45,7 @@ def show_home():
     st.markdown("-> Take :green[smart tests]")
     time.sleep(0.5)
 
-    st.markdown("-> Improve ;red[weak areas]")
+    st.markdown("-> Improve :red[weak areas]")
     time.sleep(0.5)
 
     st.markdown("-> and many more!")
