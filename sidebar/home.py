@@ -10,9 +10,9 @@ def show_home():
     "“Don't count the days, make the days count.”"
     ]
     
-    for i in range(5):
+    for i in range(1):
         st.progress(i)
-    st.sidebar.markdown(f"> Daily Motivation: {random.choice(quotes)}")
+        st.sidebar.markdown(f"> Daily Motivation: {random.choice(quotes)}")
 
     st.write("Welcome to 🧠 QSense")
     st.markdown("""### Your Personalized AI Tutor" 
@@ -23,20 +23,27 @@ def show_home():
 
     st.title("🧠 QSense Dashboard")
 
+    synapse_val = random.randint(1267, 2367)
+    solved_val = random.randint(867, 1967)
+    accuracy_val = round(random.uniform(97.0, 99.9), 1)
+    streak_val = random.randint(17, 67)
+
+    # Layout
     col1, col2 = st.columns(2)
     col3, col4 = st.columns(2)
 
-    col1.metric(label="Synapses", value=random.randint(1267, 2367), delta=f"{random.uniform(12.00, 14.00):.2f}%")
-    col2.metric(label="Solved", value=random.randint(867, 1967), delta=f"{random.uniform(5.00, 7.00):.2f}%")
-    col3.metric(label="Accuracy", value=f"{random.randint(97.00, 99.00)}%", delta=f"{random.uniform(0.4, 0.6):.2f}%")
-    col4.metric(label="Streak", value=random.randint(17, 67), delta="🔥")
+    # Display Metrics
+    col1.metric(label="Synapses", value=f"{synapse_val:,}", delta="12%")
+    col2.metric(label="Solved", value=f"{solved_val:,}", delta="5.2%")
+    col3.metric(label="Accuracy", value=f"{accuracy_val}%", delta="0.5%")
+    col4.metric(label="Streak", value=f"{streak_val} Days", delta="🔥")
 
     style_metric_cards(
-        background_color="#1E1E1E", 
+        background_color="#1E1E1E",
         border_left_color="#4CAF50",
         border_size_px=1,
         box_shadow=True
-    )    
+    )
 
     time.sleep(1)
     st.markdown("-> Analyze your academic performance")
