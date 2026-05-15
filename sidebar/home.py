@@ -15,9 +15,8 @@ def show_home():
         st.sidebar.markdown(f"> Daily Motivation: {random.choice(quotes)}")
 
     st.write("Welcome to 🧠 QSense")
-    st.markdown("""### Your Personalized AI Tutor" 
-                    Master complex topics, visualize mind maps and solve any problem with :rainbow[3.1—Flash—Lite] precision!
-                """)
+    st.markdown("### Your Personalized AI Tutor") 
+    st.caption("Master complex topics, visualize mind maps and solve any problem with :rainbow[3.1—Flash—Lite] precision!")
 
     st.divider
 

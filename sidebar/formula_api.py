@@ -27,7 +27,7 @@ def show_formula_api():
             with st.spinner("Fetchingfrom QSense API..."):
                 response = client.models.generate_content(
                     model='gemini-3.1-flash-lite',
-                    contents=["Solve this JEE academic question step-by-step:", img]
+                    contents=[prompt]
                 )
                 
                 if response.text:
