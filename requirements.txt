@@ -7,3 +7,4 @@ cryptography>=44.0.0
 st-supabase-connection
 streamlit-extras
 streamlit-card
+streamlit-confetti

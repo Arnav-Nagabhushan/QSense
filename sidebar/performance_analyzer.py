@@ -1,6 +1,7 @@
 import streamlit as st
 import time
 from logic.brain import get_ai_recommendations
+from streamlit_confetti import confetti
 
 def parse_input_marks(marks):
     marks_dict = {}
@@ -62,10 +63,12 @@ def analyze_performance():
             if average == 100:
                 st.success(f"Perfect score! You're averaging {average:.2f}!")
                 st.balloons()
+                confetti()
                 st.toast("You got 100 percentile! 🏆")
             elif average >= 85:
                 st.success(f"Outstanding: {average:.2f}")
                 st.balloons()
+                confetti()
                 st.toast("Brilliant Performance! 🏆")
 
             total = sum(marks_dict.values())

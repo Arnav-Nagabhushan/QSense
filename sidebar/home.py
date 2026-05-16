@@ -1,7 +1,10 @@
 import streamlit as st
 import time
 import random
+import pandas as pd
 from streamlit_extras.metric_cards import style_metric_cards
+from streamlit_extras.add_vertical_space import add_vertical_space
+
 
 def show_home():
     quotes = [
@@ -10,16 +13,15 @@ def show_home():
     "“Don't count the days, make the days count.”"
     ]
     
-    for i in range(1):
-        st.progress(i)
-        st.sidebar.markdown(f"> Daily Motivation: {random.choice(quotes)}")
+    st.sidebar.markdown(f"> Daily Motivation: {random.choice(quotes)}")
 
     st.write("Welcome to 🧠 QSense")
     st.markdown("### Your Personalized AI Tutor") 
-    st.caption("Master complex topics, visualize mind maps and solve any problem with :rainbow[3.1—Flash—Lite] precision!")
+    st.caption("Master complex topics, visualize mind maps and solve any problem with :rainbow[Gemini 3.1—Flash—Lite] precision!")
 
     st.divider
 
+    st.badge("Beta")
     st.title("🧠 QSense Dashboard")
 
     synapse_val = random.randint(1267, 2367)
@@ -32,10 +34,10 @@ def show_home():
     col3, col4 = st.columns(2)
 
     # Display Metrics
-    col1.metric(label="Synapses", value=f"{synapse_val:,}", delta="12%")
-    col2.metric(label="Solved", value=f"{solved_val:,}", delta="5.2%")
-    col3.metric(label="Accuracy", value=f"{accuracy_val}%", delta="0.5%")
-    col4.metric(label="Streak", value=f"{streak_val} Days", delta="🔥")
+    col1.metric(label="Synapses Generated", value=f"{synapse_val:,}", delta="12%")
+    col2.metric(label="Queries Solved", value=f"{solved_val:,}", delta="5.2%")
+    col3.metric(label="Average Accuracy", value=f"{accuracy_val}%", delta="0.5%")
+    col4.metric(label="Average Streak", value=f"{streak_val} Days", delta="🔥")
 
     style_metric_cards(
         background_color="#1E1E1E",
@@ -47,13 +49,13 @@ def show_home():
     time.sleep(1)
     st.markdown("-> Analyze your academic performance")
     time.sleep(0.5)
-
+    add_vertical_space(1)
     st.markdown("-> Take :green[smart tests]")
     time.sleep(0.5)
-
+    add_vertical_space(1)
     st.markdown("-> Improve :red[weak areas]")
     time.sleep(0.5)
-
+    add_vertical_space(1)
     st.markdown("-> and many more!")
     time.sleep(1)
 
@@ -70,14 +72,14 @@ def show_home():
     with t1:
         with st.container(border=True):
             st.subheader("📷 Lens")
-            st.caption("Scan and solve any JEE problem instantly.")
+            st.caption("Scan and solve any problem instantly.")
             if st.button("Launch Lens", key="home_lens"):
                 st.session_state.tool = "QSense Lens" # Logic to switch tools
 
     with t2:
         with st.container(border=True):
             st.subheader("🧠 Synapse")
-            st.caption("Generate AI mind maps for deep revision.")
+            st.caption("Generate AI mind maps for quick revision.")
             if st.button("Launch Synapse", key="home_synapse"):
                 st.session_state.tool = "QSense Synapse"
 
@@ -87,4 +89,18 @@ def show_home():
             st.caption("Track your performance and weak spots.")
             if st.button("Launch Analyzer", key="home_analyzer"):
                 st.session_state.tool = "Performance Analyzer"
+
+    st.divider
+    st.write("### 📈 Average Accuracy Over Last 5 Mock Tests")
+    scores = sorted([random.randint(65, 98) for _ in range(5)]) # Random scores from 65% to 98% in ascending order
+    data = {
+        "Mock Test Series": ["Test 1", "Test 2", "Test 3", "Test 4", "Test 5"],
+        "Average Global Score (%)": scores
+    }
+    df = pd.DataFrame(data) # Convert to table using Streamlit Syntax
+    df = df.set_index("Mock Test") # Set x-axis to "Mock Test"
+    st.line_chart(df, color="#4CAF50")
+
+    st.markdown("---")
+    st.caption("⚡ Powered by Gemini 3.1 Flash-Lite | Built for educational purposes")
 
