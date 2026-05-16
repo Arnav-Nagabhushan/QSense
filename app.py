@@ -16,7 +16,7 @@ st.title("🧠 QSense")
 st.caption("From confusion to clarity.")
 
 st.sidebar.header("Main Menu")
-feature = st.sidebar.radio("Go to", ["Home", "Test Simulator", "Xplain", "Performance Analyzer", "QSense Lens", "Formula API", "QSense Synapse"]))
+feature = st.sidebar.radio("Go to", ["Home", "Test Simulator", "Xplain", "Performance Analyzer", "QSense Lens", "Formula API", "QSense Synapse"])
 
 
 st.header(feature)
