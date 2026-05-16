@@ -3,6 +3,7 @@ from google import genai
 import re
 import time
 import streamlit.components.v1 as components
+from streamlit_extras.streaming_text import streaming_text
 
 def show_synapse():
     st.title("🧠 QSense Synapse")
@@ -28,7 +29,8 @@ def show_synapse():
             http_options={'api_version': 'v1beta'}
         )
             prompt = f"You are QSense Synapse, an elite AI academic visualization engine designed for students. Create a highly structured, conceptually rich, and visually organized Mermaid.js graph TD mind map for the topic: {topic}. STRICT OUTPUT RULES: Output ONLY raw Mermaid.js code and nothing else. The response MUST start exactly with 'graph TD'. DO NOT use markdown. DO NOT use triple backticks. DO NOT add explanations, comments, headings, notes, examples, or extra text. Use ONLY simple alphanumeric node IDs such as A1, B2, C3, etc. Every node label MUST use square brackets only. DO NOT use parentheses (), curly braces, angle brackets, quotes, colons, semicolons, pipes, slashes, mathematical operators, arrows, emojis, or any other special symbols inside labels. Keep labels clean, compact, readable, and syntax-safe using plain text only. Structure the graph hierarchically with the main topic as the root node followed by major subtopics, formulas, laws, principles, identities, reactions, methods, applications, tricks, exceptions, and important JEE concepts. Maintain strong logical flow, balanced branching, conceptual grouping, and readable organization. Include only high-value academic content useful for revision and conceptual understanding. For Physics topics include laws, formulas, graphs, assumptions, and conceptual relations. For Chemistry topics include reactions, mechanisms, periodic trends, exceptions, and conceptual links. For Mathematics topics include identities, transformations, theorem relations, methods, and standard results. Ensure all Mermaid.js syntax is fully valid, directly renderable, professionally formatted, and completely free from syntax errors or disconnected nodes."        
-            with st.spinner("AI is thinking..."):
+            with st.spinner("Analyzing your query..."):
+                streaming_text("Establishing secure connection to Gemini 3.1 Flash-Lite...")
                 response = client.models.generate_content(
                     model='gemini-3.1-flash-lite',
                     contents=prompt
