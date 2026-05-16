@@ -99,7 +99,7 @@ def show_home():
         "Average Global Score (%)": scores
     }
     df = pd.DataFrame(data) # Convert to table using Streamlit Syntax
-    df = df.set_index("Mock Test") # Set x-axis to "Mock Test"
+    df = df.set_index("Mock Test Series") # Set x-axis to "Mock Test"
     st.line_chart(df, color="#4CAF50")
 
     st.markdown("---")
