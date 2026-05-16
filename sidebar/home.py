@@ -4,6 +4,7 @@ import random
 import pandas as pd
 from streamlit_extras.metric_cards import style_metric_cards
 from streamlit_extras.add_vertical_space import add_vertical_space
+from components.chatbot import show_chatbot
 
 
 def show_home():

@@ -7,41 +7,52 @@ from sidebar.xplain import xplain
 from sidebar.lens import show_lens
 from sidebar.formula_api import show_formula_api
 from sidebar.synapse import show_synapse
+from components.chatbot import show_chatbot
 
 st.set_page_config(page_title="QSense", layout="wide")
 
+st.badge("Beta")
 st.title("🧠 QSense")
 st.caption("From confusion to clarity.")
 
 st.sidebar.header("Main Menu")
-feature = st.sidebar.radio("Go to", ["Home", "Test Simulator"])
-
-st.sidebar.markdown("---")
-
-st.sidebar.header("AI-Powered Tools")
-tool = st.sidebar.selectbox("Navigate", ["Select a Tool...", "Xplain", "Performance Analyzer", "QSense Lens", "Formula API", "QSense Synapse"])
+feature = st.sidebar.radio("Go to", ["Home", "Test Simulator", "Xplain", "Performance Analyzer", "QSense Lens", "Formula API", "QSense Synapse"]))
 
 
 st.header(feature)
 
-if tool == "Xplain":
+if feature == "Xplain":
     xplain()
+    st.divider()
+    show_chatbot()
 
-elif tool == "Performance Analyzer":
+elif feature == "Performance Analyzer":
     analyze_performance()
+    st.divider()
+    show_chatbot()
 
-elif tool == "QSense Lens":
+elif feature == "QSense Lens":
     show_lens()
+    st.divider()
+    show_chatbot()
 
-elif tool == "QSense Synapse":
+elif feature == "QSense Synapse":
     show_synapse()
+    st.divider()
+    show_chatbot()
 
 
-elif tool == "Formula API":
+elif feature == "Formula API":
     show_formula_api()
+    st.divider()
+    show_chatbot()
 
 elif feature == "Home":
     show_home()
+    st.divider()
+    show_chatbot()
 
 elif feature == "Test Simulator":
     simulate_test()
+    st.divider()
+    show_chatbot()

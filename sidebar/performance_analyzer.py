@@ -2,6 +2,7 @@ import streamlit as st
 import time
 from logic.brain import get_ai_recommendations
 from streamlit_confetti import confetti
+from components.chatbot import show_chatbot
 
 def parse_input_marks(marks):
     marks_dict = {}

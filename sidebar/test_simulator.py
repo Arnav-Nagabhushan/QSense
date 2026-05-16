@@ -1,6 +1,7 @@
 import streamlit as st
 import time
 from question_bank import question_bank as questions
+from components.chatbot import show_chatbot
 
 
 def calculate_percentage(score, total):

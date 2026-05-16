@@ -1,6 +1,6 @@
 import streamlit as st
 from google import genai
-from streamlit_extras.streaming_text import streaming_text
+from components.chatbot import show_chatbot
 
 def show_formula_api():
     st.title("📡 Formula API")
@@ -26,7 +26,6 @@ def show_formula_api():
             prompt = f"You are a high-performance technical documentation engine specialized in generating ultra-compact, exam-optimized formula sheets for rapid revision and advanced problem-solving. The user is requesting the 'formula sheet' for the topic path: {query}. Generate a highly structured Markdown response with professional formatting and proper LaTeX notation using $$...$$ for display equations and $...$ for inline notation. The response must contain the following sections exactly: 1. Key Equations — Include all critical formulas, identities, transformations, standard results, shortcuts, derived forms, approximations, and commonly used relations relevant to the requested topic. Group formulas logically, define important symbols briefly, include alternate forms frequently used in JEE, and maintain mathematically correct notation throughout. Prioritize high-frequency and problem-solving-oriented equations only. 2. Constraints & Edge Cases — Mention assumptions, limitations, invalid conditions, sign conventions, approximation breakdowns, convergence conditions, undefined cases, neglected effects, and conceptual traps where formulas fail or produce incorrect results. Include common mistakes students make in exams and important edge scenarios frequently tested in JEE Main and Advanced. 3. Essential Constants — Include all relevant constants with symbol, numerical value, SI units, standard approximations used in JEE, and important conversion factors wherever applicable. Keep the response dense, technical, concise, professional, highly scannable, and optimized for last-minute revision under exam pressure. Avoid storytelling, beginner explanations, motivational language, unnecessary derivations, filler text, or conversational tone. Maintain consistent notation, clean Markdown structure, and maximum information density. If the topic path is invalid, unsupported, ambiguous, or empty, politely request a valid topic path such as /physics/thermodynamics, /chemistry/chemical-kinetics, or /mathematics/probability."
 
             with st.spinner("Fetching from QSense API..."):
-                streaming_text("Establishing secure connection to Gemini 3.1 Flash-Lite...")
                 response = client.models.generate_content(
                     model='gemini-3.1-flash-lite',
                     contents=[prompt]
