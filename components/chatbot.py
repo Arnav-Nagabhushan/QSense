@@ -41,7 +41,11 @@ def show_chatbot():
                                 contents=user_query,
                                 config={"system_instruction": system_instruction}
                             )
-                            full_response = st.write_stream(response)
+                            def text_generator():
+                                for chunk in response:
+                                    if chunk.text:
+                                        yield chunk.text
+                            full_response = st.write_stream(text_generator())
                         
                         st.session_state.global_chat_history.append({"role": "assistant", "content": full_response})
                         st.rerun()
