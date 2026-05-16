@@ -20,7 +20,7 @@ def show_home():
     st.markdown("### Your Personalized AI Tutor") 
     st.caption("Master complex topics, visualize mind maps and solve any problem with :rainbow[Gemini 3.1—Flash—Lite] precision!")
 
-    st.divider
+    st.divider()
 
     st.badge("Beta")
     st.title("🧠 QSense Dashboard")
@@ -91,15 +91,16 @@ def show_home():
             if st.button("Launch Analyzer", key="home_analyzer"):
                 st.session_state.tool = "Performance Analyzer"
 
-    st.divider
+    st.divider()
     st.write("### 📈 Average Accuracy Over Last 5 Mock Tests")
     scores = sorted([random.randint(65, 98) for _ in range(5)]) # Random scores from 65% to 98% in ascending order
-    data = {
-        "Mock Test Series": ["Test 1", "Test 2", "Test 3", "Test 4", "Test 5"],
+    chart_data = {
+        "Mock Test": ["Test 1", "Test 2", "Test 3", "Test 4", "Test 5"],
         "Average Global Score (%)": scores
     }
-    df = pd.DataFrame(data) # Convert to table using Streamlit Syntax
-    df = df.set_index("Mock Test Series") # Set x-axis to "Mock Test"
+    
+    df = pd.DataFrame(chart_data)
+    df = df.set_index("Mock Test") 
     st.line_chart(df, color="#4CAF50")
 
     st.markdown("---")
